@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import { format } from "date-fns";
+import { id } from "date-fns/locale";
 
 // Fix Leaflet's default icon path issues with Next.js
 const icon = L.icon({
@@ -78,7 +80,7 @@ export default function Map({ events, userLocation }: MapProps) {
             <Popup>
               <div className="font-sans">
                 <h3 className="font-bold text-lg">{event.couple_names}</h3>
-                <p className="text-sm text-gray-600">{new Date(event.date).toLocaleString()}</p>
+                <p className="text-sm text-gray-600">{format(new Date(event.date), 'd MMM yyyy, HH.mm', { locale: id })}</p>
                 <p className="text-sm mt-1">{event.address}</p>
                 {event.distance && (
                   <p className="text-xs text-blue-600 mt-1">{event.distance.toFixed(1)} km away</p>

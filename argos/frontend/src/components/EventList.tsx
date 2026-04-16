@@ -2,6 +2,8 @@
 
 import { WeddingEvent } from "./Map";
 import { MapPin, Calendar, Heart } from "lucide-react";
+import { format } from "date-fns";
+import { id } from "date-fns/locale";
 
 interface EventListProps {
   events: WeddingEvent[];
@@ -36,7 +38,7 @@ export default function EventList({ events }: EventListProps) {
           <div className="space-y-2 text-sm text-gray-600">
             <div className="flex items-center">
               <Calendar className="w-4 h-4 mr-2 text-gray-400" />
-              <span>{new Date(event.date).toLocaleString()}</span>
+              <span>{format(new Date(event.date), 'd MMM yyyy, HH.mm', { locale: id })}</span>
             </div>
 
             <div className="flex items-start">
