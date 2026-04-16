@@ -57,9 +57,8 @@ docker compose up --build
 
 2. **Backend**:
     ```bash
-    cd argos/backend
-    pip install -r requirements.txt
-    uvicorn main:app --reload &
+    pip install -e .
+    ./run.sh &
     ```
 
 ## 🧪 Testing
@@ -68,7 +67,6 @@ The backend tests include unit testing for individual sub-agents and integration
 
 To run the test suite:
 ```bash
-export PYTHONPATH=$(pwd)/argos/backend
 python -m pytest argos/backend/tests/
 ```
 
