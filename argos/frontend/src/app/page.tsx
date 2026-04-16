@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import { MapPin } from "lucide-react";
+import { MapPin, Settings as SettingsIcon } from "lucide-react";
 import EventList from "@/components/EventList";
 import Filter from "@/components/Filter";
+import SettingsModal, { AppSettings } from "@/components/SettingsModal";
 import { WeddingEvent } from "@/components/Map";
 
 // Dynamic import for Map to avoid SSR issues with Leaflet
@@ -38,11 +39,20 @@ const mockEvents: WeddingEvent[] = [
 ];
 
 export default function Home() {
-  const [events, setEvents] = useState<WeddingEvent[]>(mockEvents);
+  const [events] = useState<WeddingEvent[]>(mockEvents);
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [radius, setRadius] = useState<number>(10);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [locationError, setLocationError] = useState<string | null>(null);
+
+  const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
+  const [appSettings, setAppSettings] = useState<AppSettings>({
+    apiUrl: "http://localhost:8000",
+    llmModel: "gpt-4-turbo",
+    concurrentAgents: 3,
+    maxSearchDepth: 2,
+    systemPromptOverride: "",
+  });
 
   useEffect(() => {
     // Request location on mount
@@ -57,13 +67,17 @@ export default function Home() {
         },
         (error) => {
           console.error("Error getting location:", error);
+
           setLocationError("Please enable location access to find weddings near you.");
           // Default to Jakarta for demo if location denied
+
           setUserLocation({ lat: -6.2088, lng: 106.8456 });
         }
       );
     } else {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLocationError("Geolocation is not supported by your browser.");
+
       setUserLocation({ lat: -6.2088, lng: 106.8456 });
     }
   }, []);
@@ -91,9 +105,18 @@ export default function Home() {
             </div>
             <h1 className="text-2xl font-bold text-gray-900 tracking-tight">ARGOS</h1>
           </div>
-          <p className="text-sm text-gray-500 font-medium hidden sm:block">
-            Discover Nearby Wedding Events
-          </p>
+          <div className="flex items-center gap-4">
+            <p className="text-sm text-gray-500 font-medium hidden sm:block">
+              Discover Nearby Wedding Events
+            </p>
+            <button
+              onClick={() => setIsSettingsOpen(true)}
+              className="p-2 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
+              aria-label="Settings"
+            >
+              <SettingsIcon className="w-5 h-5" />
+            </button>
+          </div>
         </div>
       </header>
 
@@ -126,6 +149,13 @@ export default function Home() {
           <Map events={events} userLocation={userLocation} />
         </div>
       </div>
+
+      <SettingsModal
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+        settings={appSettings}
+        onSave={setAppSettings}
+      />
     </main>
   );
 }
