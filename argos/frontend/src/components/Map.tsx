@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -51,14 +51,6 @@ function ClickToPin({ onPinLocation }: { onPinLocation: (coords: { lat: number; 
 export default function Map({ events, userLocation, onPinLocation }: MapProps) {
   const defaultCenter: [number, number] = [40.7128, -74.006];
   const center: [number, number] = userLocation ? [userLocation.lat, userLocation.lng] : defaultCenter;
-
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return <div className="h-full w-full bg-gray-200 dark:bg-gray-800 animate-pulse rounded-lg transition-colors" />;
 
   return (
     <div className="h-full w-full relative z-0">
