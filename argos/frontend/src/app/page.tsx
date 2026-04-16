@@ -66,20 +66,22 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 flex flex-col">
-      <header className="bg-white border-b border-gray-200 py-4 px-6 sticky top-0 z-10">
+    <main className="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col transition-colors">
+      <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 py-4 px-6 sticky top-0 z-10 transition-colors">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="bg-indigo-600 p-2 rounded-lg">
+            <div className="bg-indigo-600 dark:bg-indigo-500 p-2 rounded-lg">
               <MapPin className="w-6 h-6 text-white" />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 tracking-tight">ARGOS</h1>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white tracking-tight">ARGOS</h1>
           </div>
           <div className="flex items-center gap-4">
-            <p className="text-sm text-gray-500 font-medium hidden sm:block">Discover Nearby Wedding Events</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 font-medium hidden sm:block">
+              Discover Nearby Wedding Events
+            </p>
             <button
               onClick={() => setIsSettingsOpen(true)}
-              className="p-2 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
+              className="p-2 text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 rounded-lg transition-colors"
               aria-label="Settings"
             >
               <SettingsIcon className="w-5 h-5" />
@@ -91,7 +93,9 @@ export default function Home() {
       <div className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-1 flex flex-col gap-6">
           {locationError && (
-            <div className="bg-amber-50 border border-amber-200 text-amber-800 px-4 py-3 rounded-xl text-sm">{locationError}</div>
+            <div className="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-200 px-4 py-3 rounded-xl text-sm transition-colors">
+              {locationError}
+            </div>
           )}
 
           <Filter
@@ -104,13 +108,16 @@ export default function Home() {
           />
 
           <div className="flex-1">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Nearby Weddings ({events.length})</h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              Nearby Weddings ({events.length})
+            </h2>
             <EventList events={events} />
           </div>
         </div>
 
-        <div className="lg:col-span-2 h-[500px] lg:h-auto min-h-[500px] bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-          <Map events={events} userLocation={userLocation} onPinLocation={setUserLocation} />
+        {/* Right Column - Map */}
+        <div className="lg:col-span-2 h-[500px] lg:h-auto min-h-[500px] bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden transition-colors">
+          <Map events={events} userLocation={userLocation} />
         </div>
       </div>
 

@@ -58,7 +58,7 @@ export default function Map({ events, userLocation, onPinLocation }: MapProps) {
     setMounted(true);
   }, []);
 
-  if (!mounted) return <div className="h-full w-full bg-gray-200 animate-pulse rounded-lg" />;
+  if (!mounted) return <div className="h-full w-full bg-gray-200 dark:bg-gray-800 animate-pulse rounded-lg transition-colors" />;
 
   return (
     <div className="h-full w-full relative z-0">
@@ -83,15 +83,17 @@ export default function Map({ events, userLocation, onPinLocation }: MapProps) {
           <Marker key={event.id} position={[event.lat, event.lng]} icon={icon}>
             <Popup>
               <div className="font-sans">
-                <h3 className="font-bold text-lg">{event.couple_names}</h3>
-                <p className="text-sm text-gray-600">{format(new Date(event.date), "d MMM yyyy, HH.mm", { locale: id })}</p>
-                <p className="text-sm mt-1">{event.address}</p>
-                {event.distance && <p className="text-xs text-blue-600 mt-1">{event.distance.toFixed(1)} km away</p>}
+                <h3 className="font-bold text-lg dark:text-white">{event.couple_names}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300">{format(new Date(event.date), 'd MMM yyyy, HH.mm', { locale: id })}</p>
+                <p className="text-sm mt-1 dark:text-gray-200">{event.address}</p>
+                {event.distance && (
+                  <p className="text-xs text-blue-600 dark:text-blue-400 mt-1">{event.distance.toFixed(1)} km away</p>
+                )}
                 <a
                   href={event.source_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-blue-500 hover:underline mt-2 inline-block"
+                  className="text-xs text-blue-500 dark:text-blue-400 hover:underline mt-2 inline-block"
                 >
                   View Invitation
                 </a>
