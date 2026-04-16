@@ -107,8 +107,6 @@ export default function Home() {
             setRadius={setRadius}
             onRefresh={handleRefresh}
             isLoading={isLoading}
-            pinnedLocation={userLocation}
-            onLocationChange={setUserLocation}
           />
 
           <div className="flex-1">
@@ -121,7 +119,7 @@ export default function Home() {
 
         {/* Right Column - Map */}
         <div className="lg:col-span-2 h-[500px] lg:h-auto min-h-[500px] bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden transition-colors">
-          <Map events={events} userLocation={userLocation} />
+          <Map events={events} userLocation={userLocation} onPinLocation={setUserLocation} />
         </div>
       </div>
 

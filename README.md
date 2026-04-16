@@ -72,6 +72,13 @@ export PYTHONPATH=$(pwd)/argos/backend
 python -m pytest argos/backend/tests/
 ```
 
+## 📝 Recent Fixes
+
+Resolved multiple frontend issues to ensure proper compilation and optimal rendering:
+- Fixed a TypeScript error in `page.tsx` by passing the required `onPinLocation` prop to the `Map` component.
+- Removed unused `pinnedLocation` and `onLocationChange` props from the `Filter` component to address lint warnings.
+- Fixed a React cascading render warning in `Map.tsx` by removing redundant `mounted` state, as the map is dynamically loaded without Server-Side Rendering (SSR).
+
 ## 🔐 Privacy & Ethics
 
 ARGOS exclusively sources information from publicly available invitations and strictly adheres to respect terms of service, robots.txt, and privacy boundaries. No private or authenticated user data is scraped or retained without direct permission.

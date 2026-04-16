@@ -5,8 +5,6 @@ interface FilterProps {
   setRadius: (radius: number) => void;
   onRefresh: () => void;
   isLoading: boolean;
-  pinnedLocation: { lat: number; lng: number } | null;
-  onLocationChange: (coords: { lat: number; lng: number }) => void;
 }
 
 export default function Filter({
@@ -14,8 +12,6 @@ export default function Filter({
   setRadius,
   onRefresh,
   isLoading,
-  pinnedLocation,
-  onLocationChange,
 }: FilterProps) {
   return (
     <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 mb-6 transition-colors">
