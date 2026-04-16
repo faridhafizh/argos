@@ -59,7 +59,9 @@ docker compose up --build
     ```bash
     cd argos/backend
     pip install -r requirements.txt
-    uvicorn main:app --reload &
+    cd ../..
+    pip install -e .
+    uvicorn argos.backend.main:app --reload &
     ```
 
 ## 🧪 Testing
