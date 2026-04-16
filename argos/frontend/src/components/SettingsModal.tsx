@@ -41,15 +41,15 @@ export default function SettingsModal({ isOpen, onClose, settings, onSave }: Set
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-      <div className="bg-white rounded-xl shadow-xl w-full max-w-lg overflow-hidden flex flex-col max-h-[90vh]">
-        <div className="flex items-center justify-between p-4 border-b border-gray-100 bg-gray-50/50">
-          <div className="flex items-center gap-2 text-indigo-600">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-lg overflow-hidden flex flex-col max-h-[90vh] transition-colors">
+        <div className="flex items-center justify-between p-4 border-b border-gray-100 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-800/50 transition-colors">
+          <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400">
             <SettingsIcon className="w-5 h-5" />
-            <h2 className="text-lg font-semibold text-gray-900">Agent Settings</h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Agent Settings</h2>
           </div>
           <button
             onClick={onClose}
-            className="p-1 hover:bg-gray-200 rounded-lg transition-colors text-gray-500"
+            className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors text-gray-500 dark:text-gray-400"
           >
             <X className="w-5 h-5" />
           </button>
@@ -57,7 +57,7 @@ export default function SettingsModal({ isOpen, onClose, settings, onSave }: Set
 
         <div className="p-6 overflow-y-auto flex-1 flex flex-col gap-5">
           <div>
-            <label htmlFor="apiUrl" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="apiUrl" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Agent API URL
             </label>
             <input
@@ -67,12 +67,12 @@ export default function SettingsModal({ isOpen, onClose, settings, onSave }: Set
               value={formData.apiUrl}
               onChange={handleChange}
               placeholder="https://api.example.com/v1"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-indigo-500 dark:focus:border-indigo-400 transition-colors"
             />
           </div>
 
           <div>
-            <label htmlFor="llmModel" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="llmModel" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               LLM Model
             </label>
             <select
@@ -80,7 +80,7 @@ export default function SettingsModal({ isOpen, onClose, settings, onSave }: Set
               name="llmModel"
               value={formData.llmModel}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-indigo-500 dark:focus:border-indigo-400 transition-colors"
             >
               <option value="gpt-4">GPT-4</option>
               <option value="gpt-4-turbo">GPT-4 Turbo</option>
@@ -93,7 +93,7 @@ export default function SettingsModal({ isOpen, onClose, settings, onSave }: Set
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label htmlFor="concurrentAgents" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="concurrentAgents" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Concurrent Agents
               </label>
               <input
@@ -104,11 +104,11 @@ export default function SettingsModal({ isOpen, onClose, settings, onSave }: Set
                 max="20"
                 value={formData.concurrentAgents}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-indigo-500 dark:focus:border-indigo-400 transition-colors"
               />
             </div>
             <div>
-              <label htmlFor="maxSearchDepth" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="maxSearchDepth" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Max Search Depth
               </label>
               <input
@@ -119,13 +119,13 @@ export default function SettingsModal({ isOpen, onClose, settings, onSave }: Set
                 max="10"
                 value={formData.maxSearchDepth}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-indigo-500 dark:focus:border-indigo-400 transition-colors"
               />
             </div>
           </div>
 
           <div>
-            <label htmlFor="systemPromptOverride" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="systemPromptOverride" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               System Prompt Override
             </label>
             <textarea
@@ -135,21 +135,21 @@ export default function SettingsModal({ isOpen, onClose, settings, onSave }: Set
               value={formData.systemPromptOverride}
               onChange={handleChange}
               placeholder="Enter a custom system prompt to override the default..."
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 resize-none"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-indigo-500 dark:focus:border-indigo-400 resize-none transition-colors"
             />
           </div>
         </div>
 
-        <div className="p-4 border-t border-gray-100 bg-gray-50 flex justify-end gap-3">
+        <div className="p-4 border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/80 flex justify-end gap-3 transition-colors">
           <button
             onClick={onClose}
-            className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
           >
             Cancel
           </button>
           <button
             onClick={handleSave}
-            className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors flex items-center gap-2"
+            className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 dark:bg-indigo-500 rounded-lg hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors flex items-center gap-2"
           >
             <Save className="w-4 h-4" />
             Save Changes
