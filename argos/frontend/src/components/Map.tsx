@@ -1,13 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
 
-// Fix Leaflet's default icon path issues with Next.js
 const icon = L.icon({
   iconUrl: "/marker-icon.png",
   shadowUrl: "/marker-shadow.png",
@@ -29,9 +28,9 @@ export interface WeddingEvent {
 interface MapProps {
   events: WeddingEvent[];
   userLocation: { lat: number; lng: number } | null;
+  onPinLocation: (coords: { lat: number; lng: number }) => void;
 }
 
-// Component to recenter map when user location changes
 function RecenterAutomatically({ lat, lng }: { lat: number; lng: number }) {
   const map = useMap();
   useEffect(() => {
@@ -40,16 +39,22 @@ function RecenterAutomatically({ lat, lng }: { lat: number; lng: number }) {
   return null;
 }
 
-export default function Map({ events, userLocation }: MapProps) {
-  const defaultCenter: [number, number] = [-6.2088, 106.8456]; // Default to Jakarta
-  const center: [number, number] = userLocation
-    ? [userLocation.lat, userLocation.lng]
-    : defaultCenter;
+function ClickToPin({ onPinLocation }: { onPinLocation: (coords: { lat: number; lng: number }) => void }) {
+  useMapEvents({
+    click(e) {
+      onPinLocation({ lat: e.latlng.lat, lng: e.latlng.lng });
+    },
+  });
+  return null;
+}
+
+export default function Map({ events, userLocation, onPinLocation }: MapProps) {
+  const defaultCenter: [number, number] = [40.7128, -74.006];
+  const center: [number, number] = userLocation ? [userLocation.lat, userLocation.lng] : defaultCenter;
 
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -57,21 +62,19 @@ export default function Map({ events, userLocation }: MapProps) {
 
   return (
     <div className="h-full w-full relative z-0">
-      <MapContainer
-        center={center}
-        zoom={13}
-        style={{ height: "100%", width: "100%", borderRadius: "0.5rem" }}
-      >
+      <MapContainer center={center} zoom={13} style={{ height: "100%", width: "100%", borderRadius: "0.5rem" }}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
+        <ClickToPin onPinLocation={onPinLocation} />
+
         {userLocation && (
           <>
             <RecenterAutomatically lat={userLocation.lat} lng={userLocation.lng} />
             <Marker position={[userLocation.lat, userLocation.lng]} icon={icon}>
-              <Popup>Your Location</Popup>
+              <Popup>Search Pin (click map to move)</Popup>
             </Marker>
           </>
         )}

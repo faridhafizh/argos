@@ -5,9 +5,18 @@ interface FilterProps {
   setRadius: (radius: number) => void;
   onRefresh: () => void;
   isLoading: boolean;
+  pinnedLocation: { lat: number; lng: number } | null;
+  onLocationChange: (coords: { lat: number; lng: number }) => void;
 }
 
-export default function Filter({ radius, setRadius, onRefresh, isLoading }: FilterProps) {
+export default function Filter({
+  radius,
+  setRadius,
+  onRefresh,
+  isLoading,
+  pinnedLocation,
+  onLocationChange,
+}: FilterProps) {
   return (
     <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 mb-6 transition-colors">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -31,7 +40,7 @@ export default function Filter({ radius, setRadius, onRefresh, isLoading }: Filt
           disabled={isLoading}
           className="bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 text-white px-6 py-2 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
         >
-          {isLoading ? 'Scanning...' : 'Scan Nearby'}
+          {isLoading ? "Scanning..." : "Scan Nearby"}
         </button>
       </div>
     </div>
