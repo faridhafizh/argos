@@ -27,7 +27,7 @@ export default function EventList({ events }: EventListProps) {
           className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow"
         >
           <div className="flex justify-between items-start mb-2">
-            <h3 className="font-bold text-lg text-gray-800 dark:text-white">{event.couple_names}</h3>
+            <h3 className="font-bold text-lg text-gray-800 dark:text-gray-100">{event.couple_names}</h3>
             {event.distance && (
               <span className="bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs px-2 py-1 rounded-full font-medium">
                 {event.distance.toFixed(1)} km
@@ -47,7 +47,7 @@ export default function EventList({ events }: EventListProps) {
             </div>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-gray-50 dark:border-gray-700 flex justify-between items-center">
+          <div className="mt-4 pt-3 border-t border-gray-50 dark:border-gray-700/50 flex justify-between items-center">
             <a
               href={event.source_url}
               target="_blank"
@@ -60,7 +60,7 @@ export default function EventList({ events }: EventListProps) {
               href={`https://www.google.com/maps/dir/?api=1&destination=${event.lat},${event.lng}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-900 dark:text-white px-3 py-1.5 rounded-lg font-medium transition-colors"
+              className="text-sm bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 px-3 py-1.5 rounded-lg font-medium transition-colors"
             >
               Navigate
             </a>
