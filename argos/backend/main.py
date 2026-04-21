@@ -5,7 +5,17 @@ from pydantic import BaseModel
 
 from argos.backend.orchestrator import Orchestrator
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI(title="ARGOS Wedding Discovery API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 DEFAULT_SOURCES = [
     "https://www.weddingwire.com/",
