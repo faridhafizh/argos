@@ -71,14 +71,14 @@ export default function Home() {
       <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 py-4 px-6 sticky top-0 z-10 transition-colors">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="bg-indigo-600 dark:bg-indigo-500 p-2 rounded-lg">
+            <div className="bg-gradient-to-br from-indigo-500 to-purple-600 p-2 rounded-lg shadow-md">
               <MapPin className="w-6 h-6 text-white" />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white tracking-tight">ARGOS</h1>
+            <h1 className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 tracking-tight">ARGOS</h1>
           </div>
           <div className="flex items-center gap-4">
             <p className="text-sm text-gray-500 dark:text-gray-400 font-medium hidden sm:block">
-              Discover Nearby Wedding Events
+              Powered by AI Agent Swarm Architecture
             </p>
             <div className="flex items-center gap-2">
               <ThemeToggle />
@@ -93,6 +93,15 @@ export default function Home() {
           </div>
         </div>
       </header>
+
+      <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 py-8 px-6 text-center">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight">
+          Find the perfect wedding events near you
+        </h2>
+        <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          Pin your location and let ARGOS use cutting-edge AI to instantly discover, analyze, and map publicly available digital wedding invitations around you.
+        </p>
+      </div>
 
       <div className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-1 flex flex-col gap-6">
