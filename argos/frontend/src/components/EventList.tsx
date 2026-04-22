@@ -12,9 +12,14 @@ interface EventListProps {
 export default function EventList({ events }: EventListProps) {
   if (events.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-48 text-gray-500 dark:text-gray-400">
-        <Heart className="w-8 h-8 mb-2 opacity-50" />
-        <p>No weddings found nearby</p>
+      <div className="flex flex-col items-center justify-center p-8 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl border border-indigo-100 dark:border-indigo-800/50 text-center">
+        <div className="bg-indigo-100 dark:bg-indigo-800/50 p-4 rounded-full mb-4">
+          <Heart className="w-8 h-8 text-indigo-600 dark:text-indigo-400" />
+        </div>
+        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">No weddings found nearby</h3>
+        <p className="text-sm text-gray-600 dark:text-gray-400 max-w-[250px]">
+          Expand your search radius or try pinning a different location to discover magical events powered by AI.
+        </p>
       </div>
     );
   }

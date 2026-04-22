@@ -1,5 +1,9 @@
 # ARGOS 💍
 
+<div align="center">
+  <img src="argos/frontend/public/logo.svg" alt="ARGOS Logo" width="200" height="200" />
+</div>
+
 ARGOS is a production-ready web application designed to help users discover nearby wedding events by scanning and analyzing publicly available digital wedding invitations using a cutting-edge **AI Agent Swarm Architecture**.
 
 ## 🎯 Features
@@ -20,6 +24,19 @@ ARGOS employs a Multi-Agent System (AI Agent Swarm) to handle complex extraction
 - **Ranking Agent**: Ranks events sequentially based on distance.
 
 ## 🛠 Tech Stack
+
+<p align="center">
+  <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js"></a>
+  <a href="https://reactjs.org/"><img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" alt="React"></a>
+  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS"></a>
+  <a href="https://leafletjs.com/"><img src="https://img.shields.io/badge/Leaflet-199900?style=for-the-badge&logo=Leaflet&logoColor=white" alt="Leaflet"></a>
+  <br/>
+  <a href="https://fastapi.tiangolo.com/"><img src="https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi" alt="FastAPI"></a>
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" alt="Python"></a>
+  <a href="https://www.postgresql.org/"><img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL"></a>
+  <a href="https://redis.io/"><img src="https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white" alt="Redis"></a>
+  <a href="https://www.docker.com/"><img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"></a>
+</p>
 
 - **Frontend**: Next.js (App Router), React, Tailwind CSS, Leaflet/React-Leaflet.
 - **Backend**: FastAPI (Python), SQLAlchemy, GeoAlchemy2, PostGIS.
